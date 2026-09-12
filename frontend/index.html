@@ -1,18 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Web3 Forum</title>
+  <title>Web3 Форум</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-  <h1 id="account_lbl" hidden></h1>
-  
-  <button id="connection_btn">Connect</button>
-  <button id="makePost_btn" hidden>Make post</button>
-  
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="logo-icon">◈</div>
+        Web3 Форум
+      </div>
+      <div class="header-right">
+        <!-- Заповнюється після eth_requestAccounts -->
+        <span id="account_lbl"></span>
+        <button id="connection_btn" class="btn btn-connect">
+          Підключити гаманець</button>
+      </div>
+    </header>
+
+    <!-- visible після успішного connect -->
+    <div id="dapp" class="hidden">
+      <div class="card">
+        <h2>Новий пост</h2>
+        <textarea id="post_content" placeholder="Що у вас на думці?"></textarea>
+        <button id="makePost_btn" class="btn btn-primary">Опублікувати</button>
+      </div>
+
+      <div class="card">
+        <h2>Пошук за ID</h2>
+        <div class="row">
+          <input type="number" id="search_id" min="0" placeholder="ID поста (наприклад 0)" />
+          <button id="search_btn" class="btn btn-ghost">Знайти</button>
+        </div>
+        <div id="search_result"></div>
+      </div>
+
+      <div class="card">
+        <div class="posts-header">
+          <h2>Усі пости</h2>
+          <button id="refresh_btn" class="btn btn-ghost">Оновити</button>
+        </div>
+        <div id="posts_list">
+          <p class="loading">Завантаження...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Порядок: web3 → abi → app. CDN: https://cdn.jsdelivr.net/npm/web3/ -->
   <script src="https://cdn.jsdelivr.net/npm/web3@4.16.0/dist/web3.min.js"></script>
   <script src="./contract_abi.js"></script>
   <script src="./index.js"></script>
 </body>
+
 </html>

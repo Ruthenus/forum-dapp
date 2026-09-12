@@ -1,3 +1,8 @@
+// JSON ABI контракту Forum (з artifacts після hardhat compile)
+// https://docs.soliditylang.org/en/latest/abi-spec.html
+// Використання: new web3.eth.Contract(abi, address)
+// https://docs.web3js.org/libdocs/Contract
+
 const abi = [
     {
       "inputs": [
@@ -87,5 +92,42 @@ const abi = [
       ],
       "stateMutability": "view",
       "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "hasLiked",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idx",
+          "type": "uint256"
+        }
+      ],
+      "name": "like_post",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
-  ]
+  ];

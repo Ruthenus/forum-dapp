@@ -1,15 +1,33 @@
-# Sample Hardhat Project
+# Web3 Forum
 
-This project demonstrates a basic Hardhat use case. 
-It comes with a sample contract, a test for that contract, 
-and a Hardhat Ignition module that deploys that contract.
+**Web3 Forum** — це децентралізований додаток (dApp) для створення публікацій та взаємодії з ними за допомогою смарт-контрактів на базі Ethereum (Solidity), Web3.js та інтерфейсу на Vanilla JavaScript.
 
-Try running some of the following tasks:
+## Основний функціонал
+* **Створення постів:** публікація текстових повідомлень у блокчейн із фіксацією адреси автора та часової мітки (`block.timestamp`).
+* **Система лайків:** унікальні вподобайки для кожного поста з перевіркою через мапінг (`mapping(uint => mapping(address => bool))`), що запобігає повторному голосуванню з однієї адреси.
+* **Пошук за ID:** можливість миттєвого перегляду конкретної публікації за її індексом у блокчейні.
+* **Інтеграція з MetaMask:** автоматичне визначення провайдера EIP-1193, підключення акаунта та динамічне реагування на зміну гаманця (`accountsChanged`).
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
-```
+---
+
+## Структура проекту
+* `Forum.sol` — смарт-контракт на Solidity з логікою зберігання масиву структур постів та мапи вподобайок.
+* `index.html` — головна сторінка інтерфейсу dApp.
+* `style.css` — таблиця стилів оформлення інтерфейсу.
+* `index.js` — клієнтська логіка на Web3.js для виклику `eth_call` та надсилання транзакцій `eth_sendTransaction`.
+* `contract_abi.js` — ABI смарт-контракту для взаємодії через JavaScript.
+
+---
+
+## Швидкий старт та розгортання
+
+* Крок 1. Запустіть локальну ноду Hardhat:
+  ```shell
+  npx hardhat node
+  ```
+* Крок 2. Скомпілюйте та розгорніть смарт-контракт у новому терміналі (за допомогою скрипта розгортання або Ignition):
+  ```shell
+  npx hardhat run scripts/deploy.js --network localhost
+  ```
+* Крок 3. Скопіюйте отриману адресу контракту та оновіть її у файлі `index.js` у змінній `contract_address`.
+* Крок 4. Відкрийте `index.html` у браузері через локальний сервер та підключіть ваш гаманець MetaMask, налаштований на мережу Hardhat Localhost.
